@@ -15,7 +15,8 @@ export const DataProvider = ({children}) => {
   const [message, setMessage] = useState("");
   const [studentsData, setStudentsData] = useState([]);
 
-  const ServerURL = process.env.Server_URL;
+  // const Port = `http://localhost:4201`;
+  const Port = `https://weboin-task-server.onrender.com`;
 
   // --- submit data
   const handleSubmit = async (e) => {
@@ -32,7 +33,7 @@ export const DataProvider = ({children}) => {
 
     console.log("Form Data : ", formData);
     try {
-      const response = await axios.post(`${ServerURL}/form`, formData);
+      const response = await axios.post(`${Port}/form`, formData);
 
       if (response.status === 201 || response.status === 200) {
         setMessage("Form submitted successfully!");
@@ -54,7 +55,7 @@ export const DataProvider = ({children}) => {
   // --- fetch data
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${ServerURL}/form`);
+      const response = await axios.get(`${Port}/form`);
       // console.log("Response data:", response.data);
       if (response.status === 200) {
         setStudentsData(response.data);
@@ -88,7 +89,7 @@ export const DataProvider = ({children}) => {
   //--- Delete Data 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`${ServerURL}/form/${id}`);
+      const response = await axios.delete(`${Port}/form/${id}`);
       if (response.status === 200) {
         setStudentsData(studentsData.filter( student => student._id !== id ));
         // alert('Student Data deleted successfully');        
