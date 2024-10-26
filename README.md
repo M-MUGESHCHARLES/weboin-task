@@ -78,4 +78,4 @@ replace the above code(Line:19) with below code
     const Port = `http://localhost:4201`;
 ```
 
-which helps you to get the changes newly made in your backend files reflects it in your frontend app and stores the data in your newely created database.
+which helps to connect the frontend app with the backend and stores the data in your newely created database.
