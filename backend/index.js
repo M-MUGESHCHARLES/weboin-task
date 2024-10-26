@@ -14,11 +14,12 @@ app.use(express.json());
 //-------------------------------- Environment Variables Configuration
 dotenv.config();
 const Password = process.env.MongoDB_Password;
+const UserName = process.env.MongoDB_UserName;
 
 //-------------------------------- DataBase setup
 mongoose
   .connect(
-    `mongodb+srv://Weboin-Task:${Password}@cluster0.ve43p.mongodb.net/Students`  )
+    `mongodb+srv://${UserName}:${Password}@cluster0.ve43p.mongodb.net/Students`  )
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Failed to connect to MongoDB", err));
 
