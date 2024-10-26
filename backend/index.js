@@ -2,17 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const corsOptions = {
-  origin: ["http://localhost:3000"],
-  methods: 'GET,POST,DELETE'
-};
 
 const app = express();
 const Port = 4201;
 const Routes = require('./controller/StudentsRoutes');
 
 //-------------------------------- middleware
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 //-------------------------------- Environment Variables Configuration
