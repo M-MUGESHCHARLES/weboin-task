@@ -14,9 +14,12 @@ export const DataProvider = ({children}) => {
   const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
   const [studentsData, setStudentsData] = useState([]);
+  const [totalStudents, setTotalStudents] = useState('');
+  const [placedStudents, setPlacedStudents] = useState('');
+  const [unPlacedStudents, setUnPlacedStudents] = useState('');
 
-  // const Port = `http://localhost:4201`;
-  const Port = `https://weboin-task-server.onrender.com`;
+  const Port = `http://localhost:4201`;
+  // const Port = `https://weboin-task-server.onrender.com`;
 
   // --- submit data
   const handleSubmit = async (e) => {
@@ -100,6 +103,15 @@ export const DataProvider = ({children}) => {
     }
   };
 
+  // to handle the side effects if once the studentsData is present then set the total no of students,placed,unplaced details 
+  useEffect(() => {
+    setTotalStudents(studentsData.length);
+    const placed = studentsData.filter((student) => student.status === "Placed").length;
+    setPlacedStudents(placed);
+    const unplaced = studentsData.filter((student) => student.status === "Unplaced").length;
+    setUnPlacedStudents(unplaced);
+  }, [studentsData]);
+
   const contextValue = {
     name,
     role,
@@ -117,6 +129,9 @@ export const DataProvider = ({children}) => {
     message,
     studentsData,
     handleDelete,
+    totalStudents,
+    placedStudents,
+    unPlacedStudents,
   };
 
   return (

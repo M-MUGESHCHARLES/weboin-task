@@ -1,6 +1,10 @@
+import { useData } from '../../context/Context';
 import './DashBoard.css'
 
 export default function DashBoard() {
+
+  const {totalStudents, placedStudents, unPlacedStudents} = useData();
+
   return (
     <>
       <section className="Dashboard row m-0 text-white px-md-5 py-5">
@@ -26,7 +30,7 @@ export default function DashBoard() {
                 Total Students
               </p>
               <h1 className='fw-bold'>
-                11
+                {totalStudents}
               </h1>
             </div>
             <div className='col text-center px-1'>
@@ -34,7 +38,7 @@ export default function DashBoard() {
                 Placed Students
               </p>
               <h1 className='fw-bold'>
-                5
+                {placedStudents}
               </h1>
             </div>
             <div className='col text-center px-1'>
@@ -42,7 +46,7 @@ export default function DashBoard() {
                 Unplaced Students
               </p>
               <h1 className='fw-bold'>
-                6
+                {unPlacedStudents}
               </h1>
             </div>
           </div>
