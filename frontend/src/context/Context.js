@@ -71,7 +71,9 @@ export const DataProvider = ({children}) => {
 
   // handle the side effects while fetching the data
   useEffect(() => {
-    fetchData();
+    const interval = setInterval(fetchData, 5000); // Fetch data every 5 seconds 
+    return () => clearInterval(interval); // Clean up the interval on unmount
+    // fetchData(); //// normal fetch data 
   }, []);
 
   //--- log the data fetched from the DB
